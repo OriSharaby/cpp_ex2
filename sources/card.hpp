@@ -4,13 +4,12 @@ using namespace std;
 
 namespace ariel
 {
-
     class Card
     {
-    public:
-        Card(int value, String type);
+    private:
+        Card(int value, string type);
         Card();
         int compareto(Card card);
-    }:
-
+    };
+    
 }

@@ -1,6 +1,14 @@
-#include "Card.hpp"
+#include "card.hpp"
 using namespace ariel;
 
-Card ::card(int value, String type){
+    Card :: Card(int value, string type){
 
-};
+    };
+
+    Card :: Card(){
+
+    };
+
+    int Card :: compareto(Card other){
+    return 0;
+    };

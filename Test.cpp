@@ -1,5 +1,6 @@
 #include "doctest.h"
-#include "sources/Player.hpp"
-#include "sources/Game.hpp"
-#include "sources/Card.hpp"
+#include "sources/player.hpp"
+#include "sources/game.hpp"
+#include "sources/card.hpp"
+
 
