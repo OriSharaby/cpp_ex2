@@ -3,13 +3,12 @@
 using namespace std;
 
 namespace ariel
-{
+{}
     class Card
     {
-    private:
+    public:
         Card(int value, string type);
         Card();
         int compareto(Card card);
     };
     
-}
