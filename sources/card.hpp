@@ -6,12 +6,15 @@ using namespace std;
 namespace ariel
 {}
     class Card{
-        int value;
+        int number;
         string type;
     
     public:
-        Card(int value, string type);
+        Card(int number, string type);
         Card();
         int compareto(Card card);
+        int getNumber();
+        string getType();
+        string cardInfo();
     };
     

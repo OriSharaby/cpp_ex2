@@ -4,6 +4,8 @@
 
 class Game{
     
+    Player player1;
+    Player player2;
     public:
     Game(Player first, Player second);
     void playTurn();
