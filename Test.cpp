@@ -8,8 +8,8 @@ TEST_CASE("Test Player"){
     CHECK_THROWS(Player(NULL));
     Player Ori("Ori");
     Player Meir("Meir");
-    CHECK(Ori.stacksize() == 26);
-    CHECK(Meir.stacksize() == 26);
+    CHECK(Ori.stacksize() == 0);
+    CHECK(Meir.stacksize() == 0);
     CHECK(Ori.cardesTaken() == 0);
     CHECK(Meir.cardesTaken() == 0);
    
@@ -18,8 +18,10 @@ TEST_CASE("Test Player"){
     CHECK(Ori.stacksize() == Meir.stacksize());
     CHECK(Ori.cardesTaken()!= Meir.cardesTaken());
 
-    CHECK(Ori.stacksize()<26 && Meir.stacksize()<26);
-    CHECK(Ori.cardesTaken()> 1 || Meir.cardesTaken()>1);
+    bool isCardsTaken = Ori.stacksize()<26 && Meir.stacksize()<26;
+    CHECK(isCardsTaken);
+    bool isMultipleCardsTaken = Ori.cardesTaken()> 1 || Meir.cardesTaken()>1;
+    CHECK(isMultipleCardsTaken);
 }
 
 TEST_CASE("Teat Card"){
@@ -48,7 +50,8 @@ TEST_CASE("Test Game"){
     
     CHECK_THROWS(Game(Ori,Ori));
     CHECK((Ori.cardesTaken()+Meir.cardesTaken())==52);
-    CHECK((Ori.stacksize()==0)&&(Meir.stacksize()==0));
+    bool emptyStackSize = (Ori.stacksize()==0)&&(Meir.stacksize()==0);
+    CHECK(emptyStackSize);
 
     CHECK_THROWS(once.playAll());   
     CHECK_THROWS(once.playTurn());  
