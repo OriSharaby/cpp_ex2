@@ -1,16 +1,19 @@
 #pragma once
 #include <string>
+#include <stack>
 #include "card.hpp"
 #include "stats.hpp"
+using namespace std;
+using namespace ariel;
 
 
 class Player{
 
     string name;
-    Card ownedCards[52];
+    stack <Card> myStack;
     int takenCards;
-    int stackSize;
-    Stats stats;
+    int cardsLeft;
+    Stats* stats;
     
 
 
@@ -21,8 +24,8 @@ class Player{
     string getName();
     string statsToPrint();
     void addCard(Card card);
+    void setcardsLeft(int amount);
     void updateStats(int cardTaken, string resuls);
     Card takeFirstCard();
-
     
 };
