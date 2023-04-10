@@ -12,7 +12,7 @@ Player :: Player(std :: string name){
     this->myStack =stack<Card>();
 
 }
-int Player:: cardsTaken(){
+int Player:: cardesTaken(){
     return this->takenCards;
 };
 
@@ -42,13 +42,13 @@ void Player ::updateStats(int cardsCounter,string resulet){
         this->stats->loses++;
     }
 };
-string Player :: statsToPrint(){
+void Player :: statsToPrint(){
 
     cout << this->name << " has " << this->stats->wins << " wins, " <<
     this->stats->loses << " loses and " << this->stats->draws << " draws." << endl;
 
     // total cards won
-    cout << this->name << " has won " << this->cardsTaken() << " cards." << endl;
+    cout << this->name << " has won " << this->cardesTaken() << " cards." << endl;
 
     // Win and draw percentages
     cout << this->name << " has " << this->stats->wins * 100 / 26 << "% win percentage and " <<
@@ -56,11 +56,8 @@ string Player :: statsToPrint(){
 };
 
 Card Player ::takeFirstCard(){
-    if(this->cardsTaken()==0){
-        //throw erorrr!!!!!!!!!!!!!!!!1
-
-
-
+    if(this->stacksize()==0){
+        throw std::runtime_error ("The pack of cards is over!");
     }
     Card topCard = this->myStack.top();
     this->myStack.pop();

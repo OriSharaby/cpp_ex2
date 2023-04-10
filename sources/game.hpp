@@ -18,13 +18,13 @@ class Game{
     string lastTurn;
 
     public:
-    Game(Player first, Player second);
+    Game(Player &first, Player &second);
     int getTurnsPlayed();
     void playTurn();
     void playAll();
     void printLog();
     void printStats();
     void printLastTurn();
-    void printWinner();
+    void printWiner();
     void prepareGame();
 };

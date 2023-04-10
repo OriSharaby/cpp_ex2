@@ -1,36 +1,35 @@
 #include "game.hpp"
 #include <string.h>
 #include <random>
+
 #include <algorithm>
 using namespace std;
-#define Hearts 0
-#define Diamonds 1
-#define Spades 2
-#define Clubs 3
 
-Game ::Game(Player first, Player second)
-{
-    this->player1 = first;
-    this->player2 = second;
+
+Game ::Game(Player &first, Player &second) : player1(first),player2(second){
     this->turnsPlayed = 0;
     this->cardCounter = 0;
     this->reset = true;
     this->turnsDB = new string[26];
     this->deck = new Card[52];
-    void prepareGame();
     for (int i = 0; i < 26; i++)
     {
         this->turnsDB[i] = "";
     }
+    void prepareGame();
+
 };
 void Game ::playTurn()
 {
 
     if (this->player1.getName() == this->player2.getName())
     {
+        throw std::runtime_error ("Player can't play against himself!");
     }
     if (this->player1.stacksize() == 0 || this->player2.stacksize() == 0 || this->turnsPlayed > 26)
     {
+        throw std::runtime_error ("The players have no cards left!");
+
     }
     if (reset == true)
     {
@@ -117,14 +116,14 @@ void Game ::printLastTurn()
     cout << turnsDB[getTurnsPlayed()] << endl;
 };
 
-void Game ::printWinner()
+void Game ::printWiner()
 {
     string winner;
-    if (player1.cardsTaken() > player2.cardsTaken())
+    if (player1.cardesTaken() > player2.cardesTaken())
     {
         winner += "The winner is " + player1.getName();
     }
-    else if (player1.cardsTaken() < player2.cardsTaken())
+    else if (player1.cardesTaken() < player2.cardesTaken())
     {
         winner += "The winner is " + player2.getName();
     }
@@ -137,10 +136,10 @@ void Game ::printWinner()
 
 void Game ::prepareGame()
 {
-    string suit;
+    string suits[4] = {"Hearts", "Diamonds", "Spades", "Clubs"};
     for (int i = 0; i < 4; i++)
     {
-        suit = i;
+        string suit = suits[i];
         for (int j = 0; j < 13; j++)
         {
             (this->deck)[(i * 13) + j] = Card(j + 1, suit);
@@ -151,13 +150,13 @@ void Game ::prepareGame()
     int index = 0;
     while (index < 26)
     {
-        player1->myStack.push(this->deck[index]);
+        player1.addCard(this->deck[index]);
         index++;
     }
 
     while (index < 52)
     {
-        player2->myStack.push(this->deck[index]);
+        player2.addCard(this->deck[index]);
         index++;
     }
 };

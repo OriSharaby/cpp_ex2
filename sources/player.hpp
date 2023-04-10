@@ -19,10 +19,10 @@ class Player{
 
     public:
     Player(std :: string name);
-    int cardsTaken();
+    int cardesTaken();
     int stacksize();
     string getName();
-    string statsToPrint();
+    void statsToPrint();
     void addCard(Card card);
     void setcardsLeft(int amount);
     void updateStats(int cardTaken, string resuls);
