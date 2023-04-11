@@ -9,6 +9,8 @@ using namespace std;
 Game ::Game(Player &first, Player &second) : player1(first),player2(second){
     this->turnsPlayed = 0;
     this->cardCounter = 0;
+    player1.setcardsLeft(-26);
+    player2.setcardsLeft(-26);
     this->reset = true;
     this->turnsDB = new string[26];
     this->deck = new Card[52];

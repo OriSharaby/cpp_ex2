@@ -26,6 +26,7 @@ string Player :: getName(){
 
 void Player ::addCard(Card card){
     (this->myStack).push(card);
+    this->cardsLeft++;
 };
 
 void Player :: setcardsLeft(int amount){

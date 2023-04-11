@@ -8,8 +8,8 @@ using namespace ariel;
 
 class Game{
     
-    Player player1;
-    Player player2;
+    Player& player1;
+    Player& player2;
     string* turnsDB;
     bool reset;
     int cardCounter;
