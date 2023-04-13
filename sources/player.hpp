@@ -12,7 +12,6 @@ class Player{
     string name;
     stack <Card> myStack;
     int takenCards;
-    int cardsLeft;
     Stats* stats;
     
 
@@ -24,7 +23,7 @@ class Player{
     string getName();
     void statsToPrint();
     void addCard(Card card);
-    void setcardsLeft(int amount);
+    void setTakenCards();
     void updateStats(int cardTaken, string resuls);
     Card takeFirstCard();
     

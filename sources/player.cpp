@@ -7,17 +7,17 @@ using namespace ariel;
 Player :: Player(std :: string name){
     this->name = name;
     this->takenCards = 0;
-    this->cardsLeft = 0;
     this->stats = new Stats();
-    this->myStack =stack<Card>();
-
 }
 int Player:: cardesTaken(){
     return this->takenCards;
 };
+void Player::setTakenCards(){
+    this->takenCards++;
+}
 
 int Player::stacksize(){
-    return this->cardsLeft;
+    return this->myStack.size();
 };
 
 string Player :: getName(){
@@ -26,12 +26,8 @@ string Player :: getName(){
 
 void Player ::addCard(Card card){
     (this->myStack).push(card);
-    this->cardsLeft++;
 };
 
-void Player :: setcardsLeft(int amount){
-    this->cardsLeft -= amount;
-};
 void Player ::updateStats(int cardsCounter,string resulet){
     if( resulet == "Win"){
         this->stats->wins++;
@@ -57,12 +53,10 @@ void Player :: statsToPrint(){
 };
 
 Card Player ::takeFirstCard(){
-    if(this->stacksize()==0){
-        throw std::runtime_error ("The pack of cards is over!");
-    }
+    // if(this->stacksize()==0){
+    //     throw std::runtime_error ("The pack of cards is over!");
+    // }
     Card topCard = this->myStack.top();
     this->myStack.pop();
-    this->setcardsLeft(1);
     return topCard;
-
 };

@@ -9,8 +9,6 @@ using namespace std;
 Game ::Game(Player &first, Player &second) : player1(first),player2(second){
     this->turnsPlayed = 0;
     this->cardCounter = 0;
-    player1.setcardsLeft(-26);
-    player2.setcardsLeft(-26);
     this->reset = true;
     this->turnsDB = new string[26];
     this->deck = new Card[52];
@@ -31,8 +29,8 @@ void Game ::playTurn()
     if (this->player1.stacksize() == 0 || this->player2.stacksize() == 0 || this->turnsPlayed > 26)
     {
         throw std::runtime_error ("The players have no cards left!");
-
     }
+    cout <<player1.stacksize()<<endl;
     if (reset == true)
     {
         this->lastTurn = "";
@@ -53,7 +51,6 @@ void Game ::playTurn()
     }
     else if (resulet == -1)
     {
-
         this->player2.updateStats(cardCounter, "Win");
         this->player1.updateStats(cardCounter, "Lose");
         lastTurn += this->player1.getName() + " played " + c1.cardInfo() + " " +
@@ -79,7 +76,6 @@ void Game ::playTurn()
             this->player2.updateStats(cardCounter / 2, "Draw");
             return;
         }
-
         lastTurn += this->lastTurn + this->player1.getName() + " played " + c1.cardInfo() + " " +
                     this->player2.getName() + " played " + c2.cardInfo() + ". Draw. ";
 
@@ -95,7 +91,7 @@ int Game ::getTurnsPlayed()
 };
 void Game ::playAll()
 {
-    while (this->player1.stacksize() != 0 && this->player2.stacksize() != 0)
+    while (this->player1.stacksize() != 0 || this->player2.stacksize() != 0)
     {
         this->playTurn();
     }
