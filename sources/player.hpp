@@ -23,7 +23,7 @@ class Player{
     string getName();
     void statsToPrint();
     void addCard(Card card);
-    void setTakenCards();
+    void addToTakenCards(int num);
     void updateStats(int cardTaken, string resuls);
     Card takeFirstCard();
     

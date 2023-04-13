@@ -16,7 +16,7 @@ Game ::Game(Player &first, Player &second) : player1(first),player2(second){
     {
         this->turnsDB[i] = "";
     }
-    void prepareGame();
+    prepareGame();
 
 };
 void Game ::playTurn()
@@ -28,13 +28,16 @@ void Game ::playTurn()
     }
     if (this->player1.stacksize() == 0 || this->player2.stacksize() == 0 || this->turnsPlayed > 26)
     {
+            cout <<player1.stacksize()<<endl;
+
         throw std::runtime_error ("The players have no cards left!");
     }
-    cout <<player1.stacksize()<<endl;
     if (reset == true)
     {
         this->lastTurn = "";
+        this->cardCounter=0;
     }
+   
     Card c1 = this->player1.takeFirstCard();
     Card c2 = this->player2.takeFirstCard();
     cardCounter += 2;
@@ -149,12 +152,7 @@ void Game ::prepareGame()
     while (index < 26)
     {
         player1.addCard(this->deck[index]);
-        index++;
-    }
-
-    while (index < 52)
-    {
-        player2.addCard(this->deck[index]);
+        player2.addCard(this->deck[index+1]);
         index++;
     }
 };

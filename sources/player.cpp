@@ -7,13 +7,14 @@ using namespace ariel;
 Player :: Player(std :: string name){
     this->name = name;
     this->takenCards = 0;
+    this->myStack = stack<Card>();
     this->stats = new Stats();
 }
 int Player:: cardesTaken(){
     return this->takenCards;
 };
-void Player::setTakenCards(){
-    this->takenCards++;
+void Player::addToTakenCards(int num){
+    this->takenCards+=num;
 }
 
 int Player::stacksize(){
@@ -25,15 +26,17 @@ string Player :: getName(){
 }
 
 void Player ::addCard(Card card){
-    (this->myStack).push(card);
+    (this->myStack).push(*(new Card(card.getNumber(),card.getType())));
 };
 
 void Player ::updateStats(int cardsCounter,string resulet){
     if( resulet == "Win"){
         this->stats->wins++;
+        this->addToTakenCards(cardsCounter);
     }
     else if(resulet == "Draw"){
         this->stats->draws++;
+        this->addToTakenCards(cardsCounter);
     }
     else{
         this->stats->loses++;
