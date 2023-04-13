@@ -8,21 +8,20 @@ TEST_CASE("Test Player"){
     CHECK_THROWS(Player(NULL));
     Player Ori("Ori");
     Player Meir("Meir");
-    CHECK(Ori.stacksize() == 26);
-    CHECK(Meir.stacksize() == 26);
+    CHECK(Ori.stacksize() == 0);
+    CHECK(Meir.stacksize() == 0);
     CHECK(Ori.cardesTaken() == 0);
     CHECK(Meir.cardesTaken() == 0);
    
     Game test(Ori,Meir);
     test.playAll();
-    bool checkSize= Ori.stacksize() == Meir.stacksize();
-    CHECK(checkSize);
-    bool checkTaken = Ori.cardesTaken()!= Meir.cardesTaken();
-    CHECK(checkTaken);
-    bool sizeDecrease = Ori.stacksize()<26 && Meir.stacksize()<26;
-    CHECK(sizeDecrease);
-    bool stackEncrease = Ori.cardesTaken()> 1 || Meir.cardesTaken()>1;
-    CHECK(stackEncrease);
+    CHECK(Ori.stacksize() == Meir.stacksize());
+    CHECK(Ori.cardesTaken()!= Meir.cardesTaken());
+
+    bool isCardsTaken = Ori.stacksize()<26 && Meir.stacksize()<26;
+    CHECK(isCardsTaken);
+    bool isMultipleCardsTaken = Ori.cardesTaken()> 1 || Meir.cardesTaken()>1;
+    CHECK(isMultipleCardsTaken);
 }
 
 TEST_CASE("Teat Card"){
@@ -50,10 +49,9 @@ TEST_CASE("Test Game"){
     CHECK_THROWS(once.printLastTurn());
     
     CHECK_THROWS(Game(Ori,Ori));
-    bool gameFinished = (Ori.cardesTaken()+Meir.cardesTaken())==52;
-    CHECK(gameFinished);
-    bool stackFinished= (Ori.stacksize()==0)&&(Meir.stacksize()==0);
-    CHECK(stackFinished);
+    CHECK((Ori.cardesTaken()+Meir.cardesTaken())==52);
+    bool emptyStackSize = (Ori.stacksize()==0)&&(Meir.stacksize()==0);
+    CHECK(emptyStackSize);
 
     CHECK_THROWS(once.playAll());   
     CHECK_THROWS(once.playTurn());  
