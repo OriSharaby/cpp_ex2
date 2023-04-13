@@ -56,5 +56,5 @@ TEST_CASE("Test Game"){
     CHECK_THROWS(once.playAll());   
     CHECK_THROWS(once.playTurn());  
 
-    
+
 }
